@@ -3,13 +3,15 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Account from '../components/Account';
 import { getReposByName } from '../actions/Account';
+import { getRepositoriesByYear } from '../actions/ReposList';
 
 const mapStateToProps = store => ({
   account: store.account,
 });
 
 const mapDispatchToProps = dispatch => ({
-  getReposByName: name => dispatch(getReposByName(name)),
+  getReposByName: (name, callback) => dispatch(getReposByName(name, callback)),
+  getRepositoriesByYear: repositories => dispatch(getRepositoriesByYear(repositories)),
 });
 
 class AccountContainer extends Component {
@@ -22,12 +24,13 @@ class AccountContainer extends Component {
   };
 
   render() {
-    const { account, getReposByName } = this.props;
+    const { account, getReposByName, getRepositoriesByYear } = this.props;
 
     return (
       <Account
         name={account.name}
         getReposByName={getReposByName}
+        getRepositoriesByYear={getRepositoriesByYear}
       />
     );
   }

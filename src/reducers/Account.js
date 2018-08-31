@@ -11,14 +11,14 @@ export default function Account(state = initialState, action) {
     case GET_REPOSITORIES_REQUEST:
       return {
         ...state,
-        name: action.payload.name,
-        isFetching: action.payload.isFetching,
+        name: action.payload,
+        isFetching: true,
       };
     case GET_REPOSITORIES_SUCCESS:
       return {
         ...state,
-        repositories: action.payload.repositories,
-        isFetching: action.payload.isFetching,
+        repositories: action.payload,
+        isFetching: false,
       };
     default:
       return state;

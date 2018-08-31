@@ -3,14 +3,21 @@ import PropTypes from 'prop-types';
 
 export default class RepoItem extends Component {
   render() {
+    const { name, url, stars, date } = this.props;
+
     return (
       <div>
-        <a href="#">Repository name</a>
+        <a href={url}>
+          {name}
+        </a>
 
-        <p>Repository description</p>
+        <span>
+          {stars}
+        </span>
 
-        <span>Stars: 2</span>
-        <span>Commits: 34</span>
+        <span>
+          {new Date(date).toDateString()}
+        </span>
       </div>
     );
   }
