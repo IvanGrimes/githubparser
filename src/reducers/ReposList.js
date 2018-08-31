@@ -6,7 +6,15 @@ const initialState = {
 };
 
 function filterRepositories(repositories, year) {
-  return repositories;
+  const filtered = repositories.filter((repository) => {
+    const repositoryYear = new Date(repository.created_at).getFullYear();
+
+    if (repositoryYear === year) {
+      return repository;
+    }
+  });
+
+  return filtered;
 }
 
 export default function ReposList(state = initialState, action) {

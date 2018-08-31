@@ -7,7 +7,6 @@ export function getReposByName(name, callback) {
       type: GET_REPOSITORIES_REQUEST,
       payload: name,
     });
-    console.log(callback);
 
     fetch(`https://api.github.com/users/${name}/repos`)
       .then(response => response.json())

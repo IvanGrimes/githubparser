@@ -9,11 +9,12 @@ export default class YearsList extends Component {
 
   handleClick = (ev) => {
     const { textContent } = ev.target;
-    const { setYear } = this.props;
+    const { setYear, repositories, getRepositoriesByYear } = this.props;
 
     ev.preventDefault();
 
     setYear(+textContent);
+    getRepositoriesByYear(repositories);
   };
 
   renderItems() {

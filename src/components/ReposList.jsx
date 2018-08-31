@@ -7,20 +7,17 @@ export default class ReposList extends Component {
     const { repositories, year } = this.props;
 
     return repositories.map((repository, index) => {
-      const repositoryYear = new Date(repository.created_at).getFullYear();
+      const { name, url, stargazers_count, created_at } = repository;
 
-      if (repositoryYear === year) {
-        const { name, url, stargazers_count, created_at } = repository;
-        return (
-          <RepoItem
-            key={+(new Date().getTime() / (index + 1)).toFixed()}
-            name={name}
-            url={url}
-            stars={stargazers_count}
-            date={created_at}
-          />
-        );
-      }
+      return (
+        <RepoItem
+          key={+(new Date().getTime() / (index + 1)).toFixed()}
+          name={name}
+          url={url}
+          stars={stargazers_count}
+          date={created_at}
+        />
+      )
     });
   }
 

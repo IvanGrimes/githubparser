@@ -21,7 +21,7 @@ class ReposListContainer extends Component {
     if (!isFetching) {
       return (
         <ReposList
-          repositories={repositories}
+          repositories={reposlist.repositories}
           year={reposlist.year}
         />
       );
