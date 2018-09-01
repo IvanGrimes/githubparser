@@ -1,5 +1,4 @@
 import { SET_YEAR, FILTER_BY_YEAR } from '../actions/repositoriesActions';
-import filterRepositories from '../utils/filterRepositories';
 
 const initialState = {
   year: 2018,

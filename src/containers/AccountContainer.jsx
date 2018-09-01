@@ -13,7 +13,8 @@ const mapStateToProps = store => ({
 const mapDispatchToProps = dispatch => ({
   fetchRepositories: (name, callback) => dispatch(getRepositories(name, callback)),
   onSuccessFetch: (year, apply) => {
-    dispatch(setYear(year, apply));
+    dispatch(setYear(year));
+    dispatch(filterByYear(apply));
   },
 });
 
