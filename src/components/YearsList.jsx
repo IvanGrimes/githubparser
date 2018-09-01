@@ -7,7 +7,7 @@ export default class YearsList extends Component {
     repositories: PropTypes.arrayOf(PropTypes.any).isRequired,
   };
 
-  handleClick = (ev) => {
+  handleClick = (ev) => { // TODO: Переместить в контейнер
     const { textContent } = ev.target;
     const { setYear, repositories, getRepositoriesByYear } = this.props;
 

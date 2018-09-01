@@ -1,9 +1,10 @@
-import { GET_REPOSITORIES_REQUEST, GET_REPOSITORIES_SUCCESS } from '../actions/Account';
+import { GET_REPOSITORIES_REQUEST, GET_REPOSITORIES_SUCCESS, GET_REPOSITORIES_FAIL } from '../actions/Account';
 
 const initialState = {
   name: '',
   repositories: [],
   isFetching: false,
+  error: '',
 };
 
 export default function Account(state = initialState, action) {
@@ -18,6 +19,12 @@ export default function Account(state = initialState, action) {
       return {
         ...state,
         repositories: action.payload,
+        isFetching: false,
+      };
+    case GET_REPOSITORIES_FAIL:
+      return {
+        ...state,
+        error: action.payload,
         isFetching: false,
       };
     default:

@@ -1,6 +1,7 @@
 # Auto detect text files and perform LF normalization
-* text=auto
+* text eol=lf
 *.js eol=lf
+*.jsx eol=lf
 *.html eol=lf
 *.css eol=lf
 *.sass eol=lf

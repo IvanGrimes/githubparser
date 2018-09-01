@@ -1,5 +1,6 @@
 export const GET_REPOSITORIES_REQUEST = 'GET_REPOSITORIES_REQUEST';
 export const GET_REPOSITORIES_SUCCESS = 'GET_REPOSITORIES_SUCCESS';
+export const GET_REPOSITORIES_FAIL = 'GET_REPOSITORIES_FAIL';
 
 export function getReposByName(name, callback) {
   return (dispatch) => {
@@ -16,6 +17,6 @@ export function getReposByName(name, callback) {
           payload: repositories,
         });
         callback(repositories);
-      });
+      })
   };
 }

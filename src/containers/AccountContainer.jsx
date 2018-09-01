@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import Account from '../components/Account';
 import { getReposByName } from '../actions/Account';
 import { getRepositoriesByYear } from '../actions/ReposList';
+import { setYear } from '../actions/ReposList';
 
 const mapStateToProps = store => ({
   account: store.account,
@@ -12,6 +13,7 @@ const mapStateToProps = store => ({
 const mapDispatchToProps = dispatch => ({
   getReposByName: (name, callback) => dispatch(getReposByName(name, callback)),
   getRepositoriesByYear: repositories => dispatch(getRepositoriesByYear(repositories)),
+  setYear: year => dispatch(setYear(year)),
 });
 
 class AccountContainer extends Component {
@@ -24,13 +26,14 @@ class AccountContainer extends Component {
   };
 
   render() {
-    const { account, getReposByName, getRepositoriesByYear } = this.props;
+    const { account, getReposByName, getRepositoriesByYear, setYear } = this.props;
 
     return (
       <Account
         name={account.name}
         getReposByName={getReposByName}
         getRepositoriesByYear={getRepositoriesByYear}
+        setYear={setYear}
       />
     );
   }

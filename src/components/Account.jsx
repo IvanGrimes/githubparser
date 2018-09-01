@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
+import getYears from '../utils/getUniqueYearsFromRepositories';
 
 export default class Account extends Component {
   static propTypes = {
@@ -17,16 +18,19 @@ export default class Account extends Component {
     this.setState({ value });
   };
 
-  handleClick = (ev) => {
-    const { name, getReposByName, getRepositoriesByYear } = this.props;
+  handleClick = (ev) => { // TODO: Переместить в контейнер
+    const { name, getReposByName, getRepositoriesByYear, setYear } = this.props;
     const { value } = this.state;
 
     ev.preventDefault();
-    console.log('account', getRepositoriesByYear)
+
+    const successCallback = (repositories) => {
+      setYear(Math.max.apply(null, getYears(repositories)));
+      getRepositoriesByYear(repositories);
+    };
 
     if (value !== name) {
-      getReposByName(value, getRepositoriesByYear);
-      // TODO: dispatch(setYear(Math.max.apply(null, years(this.props.repositories))) set last year from reposlist or put inside getReposByName
+      getReposByName(value, successCallback);
     }
   };
 
