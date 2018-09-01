@@ -6,7 +6,7 @@ import { setYear, filterRepositoriesByYear } from '../actions/repositoriesAction
 
 const mapStateToProps = store => ({
   repositories: store.account.repositories,
-  currentYear: store.reposlist.year,
+  currentYear: store.repositories.year,
 });
 
 const mapDispatchToProps = dispatch => ({

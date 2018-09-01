@@ -4,13 +4,13 @@ import { connect } from 'react-redux';
 import Repositories from '../components/Repositories';
 
 const mapStateToProps = store => ({
-  reposlist: store.reposlist,
+  repositories: store.repositories,
   account: store.account,
 });
 
 class RepositoriesContainer extends Component {
   renderTemplate() {
-    const { reposlist, account } = this.props;
+    const { repositories, account } = this.props;
 
     if (account.error.length > 0 && !account.isFetching) {
       return (
@@ -20,8 +20,8 @@ class RepositoriesContainer extends Component {
     if (!account.isFetching) {
       return (
         <Repositories
-          repositories={reposlist.repositories}
-          year={reposlist.year}
+          repositories={repositories.filteredRepositories}
+          year={repositories.year}
         />
       );
     }

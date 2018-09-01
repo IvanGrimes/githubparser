@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
-import Account from './accountReducers';
-import ReposList from './repositoriesReducers';
+import accountReducers from './accountReducers';
+import repositoriesReducers from './repositoriesReducers';
 
 const rootReducer = combineReducers({
-  account: Account,
-  reposlist: ReposList,
+  account: accountReducers,
+  repositories: repositoriesReducers,
 });
 
 export default rootReducer;

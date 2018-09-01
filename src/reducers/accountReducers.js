@@ -7,7 +7,7 @@ const initialState = {
   error: '',
 };
 
-export default function Account(state = initialState, action) {
+export default function accountReducers(state = initialState, action) {
   switch (action.type) {
     case GET_REPOSITORIES_REQUEST:
       return {

@@ -3,10 +3,10 @@ import filterRepositories from '../utils/filterRepositories';
 
 const initialState = {
   year: 2018,
-  repositories: [],
+  filteredRepositories: [],
 };
 
-export default function ReposList(state = initialState, action) {
+export default function repositoriesReducers(state = initialState, action) {
   switch (action.type) {
     case SET_YEAR:
       return {
@@ -16,7 +16,7 @@ export default function ReposList(state = initialState, action) {
     case FILTER_REPOSITORIES_BY_YEAR:
       return {
         ...state,
-        repositories: filterRepositories(action.payload, state.year),
+        filteredRepositories: filterRepositories(action.payload, state.year),
       }
     default:
       return state;
