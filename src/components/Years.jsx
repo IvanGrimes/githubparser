@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 
-export default class YearsList extends Component {
+export default class Years extends Component {
   renderTemplate() {
     const { years, handleClick } = this.props;
     const items = years.map((year, index) => (

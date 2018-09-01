@@ -2,7 +2,7 @@ export const GET_REPOSITORIES_REQUEST = 'GET_REPOSITORIES_REQUEST';
 export const GET_REPOSITORIES_SUCCESS = 'GET_REPOSITORIES_SUCCESS';
 export const GET_REPOSITORIES_FAIL = 'GET_REPOSITORIES_FAIL';
 
-export function getReposByName(name, callback) {
+export function getRepositories(name, callback) {
   return (dispatch) => {
     dispatch({
       type: GET_REPOSITORIES_REQUEST,

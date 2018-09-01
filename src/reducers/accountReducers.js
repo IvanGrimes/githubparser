@@ -1,4 +1,4 @@
-import { GET_REPOSITORIES_REQUEST, GET_REPOSITORIES_SUCCESS, GET_REPOSITORIES_FAIL } from '../actions/Account';
+import { GET_REPOSITORIES_REQUEST, GET_REPOSITORIES_SUCCESS, GET_REPOSITORIES_FAIL } from '../actions/accountActions';
 
 const initialState = {
   name: '',

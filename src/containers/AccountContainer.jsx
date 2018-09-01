@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Account from '../components/Account';
-import { getReposByName } from '../actions/Account';
-import { getRepositoriesByYear, setYear } from '../actions/ReposList';
+import { getRepositories } from '../actions/accountActions';
+import { filterRepositoriesByYear, setYear } from '../actions/repositoriesActions';
 import getYears from '../utils/getUniqueYearsFromRepositories';
 
 const mapStateToProps = store => ({
@@ -11,10 +11,10 @@ const mapStateToProps = store => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  fetchRepositories: (name, callback) => dispatch(getReposByName(name, callback)),
+  fetchRepositories: (name, callback) => dispatch(getRepositories(name, callback)),
   onSuccessFetch: (repositories, year) => {
     dispatch(setYear(year));
-    dispatch(getRepositoriesByYear(repositories));
+    dispatch(filterRepositoriesByYear(repositories));
   },
 });
 

@@ -1,4 +1,4 @@
-import { SET_YEAR, GET_REPOSITORIES_BY_YEAR } from '../actions/ReposList';
+import { SET_YEAR, FILTER_REPOSITORIES_BY_YEAR } from '../actions/repositoriesActions';
 import filterRepositories from '../utils/filterRepositories';
 
 const initialState = {
@@ -13,7 +13,7 @@ export default function ReposList(state = initialState, action) {
         ...state,
         year: action.payload,
       };
-    case GET_REPOSITORIES_BY_YEAR:
+    case FILTER_REPOSITORIES_BY_YEAR:
       return {
         ...state,
         repositories: filterRepositories(action.payload, state.year),

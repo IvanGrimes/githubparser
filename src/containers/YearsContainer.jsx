@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import YearsList from '../components/YearsList';
-import { setYear, getRepositoriesByYear } from '../actions/ReposList';
+import Years from '../components/Years';
+import { setYear, filterRepositoriesByYear } from '../actions/repositoriesActions';
 
 const mapStateToProps = store => ({
   repositories: store.account.repositories,
@@ -12,11 +12,11 @@ const mapStateToProps = store => ({
 const mapDispatchToProps = dispatch => ({
   handleClick: (year, repositories) => {
     dispatch(setYear(year));
-    dispatch(getRepositoriesByYear(repositories));
+    dispatch(filterRepositoriesByYear(repositories));
   },
 });
 
-class YearsListContainer extends Component {
+class YearsContainer extends Component {
   getYears() {
     const { repositories } = this.props;
     const years = new Set();
@@ -40,7 +40,7 @@ class YearsListContainer extends Component {
   render() {
     return (
       <div>
-        <YearsList
+        <Years
           years={this.getYears()}
           handleClick={this.handleClick}
         />
@@ -49,4 +49,4 @@ class YearsListContainer extends Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(YearsListContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(YearsContainer);
