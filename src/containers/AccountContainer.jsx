@@ -5,35 +5,56 @@ import Account from '../components/Account';
 import { getReposByName } from '../actions/Account';
 import { getRepositoriesByYear } from '../actions/ReposList';
 import { setYear } from '../actions/ReposList';
+import getYears from "../utils/getUniqueYearsFromRepositories";
 
 const mapStateToProps = store => ({
   account: store.account,
 });
 
 const mapDispatchToProps = dispatch => ({
-  getReposByName: (name, callback) => dispatch(getReposByName(name, callback)),
-  getRepositoriesByYear: repositories => dispatch(getRepositoriesByYear(repositories)),
-  setYear: year => dispatch(setYear(year)),
+  fetchRepositories: (name, callback) => dispatch(getReposByName(name, callback)),
+  onSuccessFetch: (repositories, year) => {
+    dispatch(setYear(year));
+    dispatch(getRepositoriesByYear(repositories));
+  },
 });
 
 class AccountContainer extends Component {
-  static propTypes = {
-    account: PropTypes.shape({
-      name: PropTypes.string.isRequired,
-      repositories: PropTypes.array.isRequired,
-    }).isRequired,
-    getReposByName: PropTypes.func.isRequired,
+  state = {
+    value: '',
+  };
+
+  handleChange = (ev) => {
+    const { value } = ev.target;
+
+    this.setState({ value });
+  };
+
+  handleClick = (ev) => {
+    const { name, fetchRepositories, onSuccessFetch } = this.props;
+    const { value } = this.state;
+
+    ev.preventDefault();
+
+    const successCallback = (repositories) => {
+      onSuccessFetch(repositories, Math.max.apply(null, getYears(repositories)));
+    };
+
+    if (value !== name) {
+      fetchRepositories(value, successCallback);
+    }
+
+    this.setState({ value: '' });
   };
 
   render() {
-    const { account, getReposByName, getRepositoriesByYear, setYear } = this.props;
+    const { value } = this.state;
 
     return (
       <Account
-        name={account.name}
-        getReposByName={getReposByName}
-        getRepositoriesByYear={getRepositoriesByYear}
-        setYear={setYear}
+        value={value}
+        handleChange={this.handleChange}
+        handleClick={this.handleClick}
       />
     );
   }
