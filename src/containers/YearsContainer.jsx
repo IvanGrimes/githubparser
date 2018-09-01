@@ -25,11 +25,15 @@ class YearsContainer extends Component {
 
   getYears() {
     const { repositories } = this.props;
-    const years = new Set();
+    let years = [];
 
-    repositories.forEach(item => years.add(new Date(item.created_at).getFullYear()));
+    repositories.forEach(repository => years.push(new Date(repository.created_at).getFullYear()));
 
-    return Array.from(years).sort((a, b) => a > b);
+    years = years.filter((year, index, arr) => arr.indexOf(year) === index);
+
+    years.sort((a, b) => a > b);
+
+    return years;
   }
 
   handleClick = (ev) => {
