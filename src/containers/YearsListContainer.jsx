@@ -6,6 +6,7 @@ import { setYear, getRepositoriesByYear } from '../actions/ReposList';
 
 const mapStateToProps = store => ({
   repositories: store.account.repositories,
+  currentYear: store.reposlist.year,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -26,12 +27,14 @@ class YearsListContainer extends Component {
   }
 
   handleClick = (ev) => {
-    const { textContent } = ev.target;
-    const { handleClick, repositories } = this.props;
+    const { handleClick, repositories, currentYear } = this.props;
+    const selectedYear = parseInt(ev.target.textContent, 10);
 
     ev.preventDefault();
 
-    handleClick(+textContent, repositories);
+    if (selectedYear !== currentYear) {
+      handleClick(selectedYear, repositories);
+    }
   };
 
   render() {
