@@ -27,11 +27,11 @@ class AccountContainer extends Component {
   handleChange = (ev) => {
     const { value } = ev.target;
 
-    this.setState({ value });
+    this.setState({ value: value.trim() });
   };
 
   handleClick = (ev) => {
-    const { name, fetchRepositories, onSuccessFetch } = this.props;
+    const { account, fetchRepositories, onSuccessFetch } = this.props;
     const { value } = this.state;
 
     ev.preventDefault();
@@ -40,7 +40,7 @@ class AccountContainer extends Component {
       onSuccessFetch(repositories, Math.max.apply(null, getYears(repositories)));
     };
 
-    if (value !== name) {
+    if (value !== account.name) {
       fetchRepositories(value, successCallback);
     }
 

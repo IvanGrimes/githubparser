@@ -4,30 +4,43 @@ import { connect } from 'react-redux';
 import YearsList from '../components/YearsList';
 import { setYear } from '../actions/ReposList';
 import { getRepositoriesByYear } from '../actions/ReposList';
-import { getYears, getRepositoriesByYears } from '../selectors';
 
 const mapStateToProps = store => ({
-  years: getYears(store),
   repositories: store.account.repositories,
 });
 
 const mapDispatchToProps = dispatch => ({
-  setYear: year => dispatch(setYear(year)),
-  getRepositoriesByYear: repositories => dispatch(getRepositoriesByYear(repositories)),
+  handleClick: (year, repositories) => {
+    dispatch(setYear(year));
+    dispatch(getRepositoriesByYear(repositories));
+  },
 });
 
 class YearsListContainer extends Component {
+  getYears() {
+    const { repositories } = this.props;
+    const years = new Set();
+
+    repositories.forEach(item => years.add(new Date(item.created_at).getFullYear()));
+
+    return Array.from(years).sort((a, b) => a > b);
+  }
+
+  handleClick = (ev) => {
+    const { textContent } = ev.target;
+    const { handleClick, repositories } = this.props;
+
+    ev.preventDefault();
+
+    handleClick(+textContent, repositories);
+  };
 
   render() {
-    const { years, getRepositoriesByYear, repositories } = this.props;
-
     return (
       <div>
         <YearsList
-          setYear={this.props.setYear}
-          years={years}
-          getRepositoriesByYear={getRepositoriesByYear}
-          repositories={repositories}
+          years={this.getYears()}
+          handleClick={this.handleClick}
         />
       </div>
     );
