@@ -1,9 +1,9 @@
-import { SET_YEAR, FILTER_REPOSITORIES_BY_YEAR } from '../actions/repositoriesActions';
+import { SET_YEAR, FILTER_BY_YEAR } from '../actions/repositoriesActions';
 import filterRepositories from '../utils/filterRepositories';
 
 const initialState = {
   year: 2018,
-  filteredRepositories: [],
+  filterByYear: false,
 };
 
 export default function repositoriesReducers(state = initialState, action) {
@@ -13,11 +13,11 @@ export default function repositoriesReducers(state = initialState, action) {
         ...state,
         year: action.payload,
       };
-    case FILTER_REPOSITORIES_BY_YEAR:
+    case FILTER_BY_YEAR:
       return {
         ...state,
-        filteredRepositories: filterRepositories(action.payload, state.year),
-      }
+        filterByYear: action.payload,
+      };
     default:
       return state;
   }

@@ -12,7 +12,7 @@ class RepositoriesContainer extends Component {
   static propTypes = {
     repositories: PropTypes.shape({
       year: PropTypes.number.isRequired,
-      filteredRepositories: PropTypes.array.isRequired,
+      filterByYear: PropTypes.bool.isRequired,
     }).isRequired,
     account: PropTypes.shape({
       error: PropTypes.string.isRequired,
@@ -22,8 +22,21 @@ class RepositoriesContainer extends Component {
     }).isRequired,
   };
 
-  renderTemplate() {
+  filterRepositories() {
     const { repositories, account } = this.props;
+    let filteredRepositories = account.repositories;
+
+    if (repositories.filterByYear) {
+      filteredRepositories = filteredRepositories.filter((repository) => {
+        return new Date(repository.created_at).getFullYear() === repositories.year;
+      });
+    }
+
+    return filteredRepositories;
+  }
+
+  renderTemplate() {
+    const { account } = this.props;
 
     if (account.error.length > 0 && !account.isFetching) {
       return (
@@ -33,7 +46,7 @@ class RepositoriesContainer extends Component {
     if (!account.isFetching) {
       return (
         <Repositories
-          repositories={repositories.filteredRepositories}
+          repositories={this.filterRepositories()}
         />
       );
     }

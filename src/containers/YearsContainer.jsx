@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Years from '../components/Years';
-import { setYear, filterRepositoriesByYear } from '../actions/repositoriesActions';
+import { setYear, filterByYear } from '../actions/repositoriesActions';
 
 const mapStateToProps = store => ({
   repositories: store.account.repositories,
@@ -10,9 +10,9 @@ const mapStateToProps = store => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  handleClick: (year, repositories) => {
+  handleClick: (year, apply) => {
     dispatch(setYear(year));
-    dispatch(filterRepositoriesByYear(repositories));
+    dispatch(filterByYear(apply));
   },
 });
 
@@ -43,7 +43,7 @@ class YearsContainer extends Component {
     ev.preventDefault();
 
     if (selectedYear !== currentYear) {
-      handleClick(selectedYear, repositories);
+      handleClick(selectedYear, true);
     }
   };
 

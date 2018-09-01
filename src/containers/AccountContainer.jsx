@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Account from '../components/Account';
 import { getRepositories } from '../actions/accountActions';
-import { filterRepositoriesByYear, setYear } from '../actions/repositoriesActions';
+import { filterByYear, setYear } from '../actions/repositoriesActions';
 import getYears from '../utils/getUniqueYearsFromRepositories';
 
 const mapStateToProps = store => ({
@@ -12,9 +12,8 @@ const mapStateToProps = store => ({
 
 const mapDispatchToProps = dispatch => ({
   fetchRepositories: (name, callback) => dispatch(getRepositories(name, callback)),
-  onSuccessFetch: (repositories, year) => {
-    dispatch(setYear(year));
-    dispatch(filterRepositoriesByYear(repositories));
+  onSuccessFetch: (year, apply) => {
+    dispatch(setYear(year, apply));
   },
 });
 
@@ -47,7 +46,7 @@ class AccountContainer extends Component {
     ev.preventDefault();
 
     const successCallback = (repositories) => {
-      onSuccessFetch(repositories, Math.max.apply(null, getYears(repositories)));
+      onSuccessFetch(Math.max.apply(null, getYears(repositories)), true);
     };
 
     if (value !== account.name) {

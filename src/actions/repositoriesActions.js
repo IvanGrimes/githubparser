@@ -1,5 +1,5 @@
 export const SET_YEAR = 'SET_YEAR';
-export const FILTER_REPOSITORIES_BY_YEAR = 'FILTER_REPOSITORIES_BY_YEAR';
+export const FILTER_BY_YEAR = 'FILTER_BY_YEAR';
 
 export function setYear(year) {
   return {
@@ -8,7 +8,7 @@ export function setYear(year) {
   };
 }
 
-export const filterRepositoriesByYear = repositories => ({
-  type: FILTER_REPOSITORIES_BY_YEAR,
-  payload: repositories,
+export const filterByYear = apply => ({
+  type: FILTER_BY_YEAR,
+  payload: apply,
 });
