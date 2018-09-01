@@ -1,25 +1,21 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import getYears from '../utils/getUniqueYearsFromRepositories';
 
 export default class YearsList extends Component {
-  static propTypes = {
-    repositories: PropTypes.arrayOf(PropTypes.any).isRequired,
-  };
 
   handleClick = (ev) => { // TODO: Переместить в контейнер
     const { textContent } = ev.target;
-    const { setYear, repositories, getRepositoriesByYear } = this.props;
+    const { setYear, getRepositoriesByYear, repositories } = this.props;
 
     ev.preventDefault();
 
     setYear(+textContent);
-    getRepositoriesByYear(repositories);
+    getRepositoriesByYear(repositories)
   };
 
   renderTemplate() {
-    const { repositories } = this.props;
-    const items = getYears(repositories).map((year, index) => (
+    const { years } = this.props;
+    const items = years.map((year, index) => (
       <button
         type="button"
         key={+(new Date().getTime() / (index + 1)).toFixed()}
