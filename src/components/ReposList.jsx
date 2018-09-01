@@ -1,23 +1,33 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import RepoItem from '../components/RepoItem';
 
 export default class ReposList extends Component {
   renderItems() {
-    const { repositories, year } = this.props;
+    const { repositories } = this.props;
 
     return repositories.map((repository, index) => {
-      const { name, url, stargazers_count, created_at } = repository;
+      const {
+        name,
+        url,
+        stargazers_count,
+        created_at,
+      } = repository;
 
       return (
-        <RepoItem
-          key={+(new Date().getTime() / (index + 1)).toFixed()}
-          name={name}
-          url={url}
-          stars={stargazers_count}
-          date={created_at}
-        />
-      )
+        <div key={+(new Date().getTime() / (index + 1)).toFixed()}>
+          <a href={url}>
+            {name}
+          </a>
+
+          <span>
+            {stargazers_count}
+          </span>
+
+          <span>
+            {new Date(created_at).toDateString()}
+          </span>
+        </div>
+      );
     });
   }
 

@@ -1,25 +1,21 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 
-export default class Account extends Component {
-  render() {
-    const { value, handleChange, handleClick } = this.props;
+export default function Account({ value, handleChange, handleClick }) {
+  return (
+    <div>
+      <input
+        type="text"
+        onChange={handleChange}
+        value={value}
+      />
 
-    return (
-      <div>
-        <input
-          type="text"
-          onChange={handleChange}
-          value={value}
-        />
-
-        <button
-          type="button"
-          onClick={handleClick}
-        >
-          Find
-        </button>
-      </div>
-    );
-  }
+      <button
+        type="button"
+        onClick={handleClick}
+      >
+        Find
+      </button>
+    </div>
+  );
 }
