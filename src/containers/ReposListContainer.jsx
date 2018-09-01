@@ -2,22 +2,25 @@ import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import ReposList from '../components/ReposList';
 import { connect } from 'react-redux';
-import { setYear, getRepositoriesBySelectedYear } from '../actions/ReposList';
+import { getRepositoriesBySelectedYear } from '../actions/ReposList';
 
 const mapStateToProps = store => ({
   reposlist: store.reposlist,
   repositories: store.account.repositories,
   isFetching: store.account.isFetching,
-});
-
-const mapDispatchToProps = dispatch => ({
-  setYear: year => dispatch(setYear(year)),
+  error: store.account.error,
 });
 
 class ReposListContainer extends Component {
   renderTemplate() {
-    const { repositories, reposlist, isFetching } = this.props;
-
+    const { repositories, reposlist, isFetching, error } = this.props;
+    console.log('render')
+    if (error.length > 0 && !isFetching) {
+      console.log(error);
+      return (
+        <p>{error}</p>
+      );
+    }
     if (!isFetching) {
       return (
         <ReposList
@@ -27,6 +30,7 @@ class ReposListContainer extends Component {
       );
     }
 
+
     return <p>Fetching...</p>;
   }
 
@@ -35,4 +39,4 @@ class ReposListContainer extends Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ReposListContainer);
+export default connect(mapStateToProps)(ReposListContainer);

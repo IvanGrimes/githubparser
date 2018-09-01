@@ -32,6 +32,7 @@ export default class Account extends Component {
     if (value !== name) {
       getReposByName(value, successCallback);
     }
+    this.setState({ value: '' });
   };
 
   render() {

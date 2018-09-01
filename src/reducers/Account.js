@@ -13,12 +13,14 @@ export default function Account(state = initialState, action) {
       return {
         ...state,
         name: action.payload,
+        error: '',
         isFetching: true,
       };
     case GET_REPOSITORIES_SUCCESS:
       return {
         ...state,
         repositories: action.payload,
+        error: '',
         isFetching: false,
       };
     case GET_REPOSITORIES_FAIL:

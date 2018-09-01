@@ -12,11 +12,23 @@ export function getReposByName(name, callback) {
     fetch(`https://api.github.com/users/${name}/repos`)
       .then(response => response.json())
       .then((repositories) => {
-        dispatch({
-          type: GET_REPOSITORIES_SUCCESS,
-          payload: repositories,
-        });
-        callback(repositories);
-      })
+        if (repositories.message) {
+          dispatch({
+            type: GET_REPOSITORIES_FAIL,
+            payload: repositories.message,
+          });
+        } else if (!repositories.length) {
+          dispatch({
+            type: GET_REPOSITORIES_FAIL,
+            payload: `User doesn't have repositories`,
+          });
+        } else {
+          dispatch({
+            type: GET_REPOSITORIES_SUCCESS,
+            payload: repositories,
+          });
+          callback(repositories);
+        }
+      });
   };
 }
