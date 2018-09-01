@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import YearsList from '../components/YearsList';
-import { setYear } from '../actions/ReposList';
-import { getRepositoriesByYear } from '../actions/ReposList';
+import { setYear, getRepositoriesByYear } from '../actions/ReposList';
 
 const mapStateToProps = store => ({
   repositories: store.account.repositories,

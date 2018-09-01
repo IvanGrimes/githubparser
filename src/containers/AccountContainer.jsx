@@ -3,9 +3,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Account from '../components/Account';
 import { getReposByName } from '../actions/Account';
-import { getRepositoriesByYear } from '../actions/ReposList';
-import { setYear } from '../actions/ReposList';
-import getYears from "../utils/getUniqueYearsFromRepositories";
+import { getRepositoriesByYear, setYear } from '../actions/ReposList';
+import getYears from '../utils/getUniqueYearsFromRepositories';
 
 const mapStateToProps = store => ({
   account: store.account,

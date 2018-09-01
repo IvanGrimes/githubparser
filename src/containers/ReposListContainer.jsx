@@ -1,27 +1,23 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import ReposList from '../components/ReposList';
 import { connect } from 'react-redux';
-import { getRepositoriesBySelectedYear } from '../actions/ReposList';
+import ReposList from '../components/ReposList';
 
 const mapStateToProps = store => ({
   reposlist: store.reposlist,
-  repositories: store.account.repositories,
-  isFetching: store.account.isFetching,
-  error: store.account.error,
+  account: store.account,
 });
 
 class ReposListContainer extends Component {
   renderTemplate() {
-    const { repositories, reposlist, isFetching, error } = this.props;
-    console.log('render')
-    if (error.length > 0 && !isFetching) {
-      console.log(error);
+    const { reposlist, account } = this.props;
+
+    if (account.error.length > 0 && !account.isFetching) {
       return (
-        <p>{error}</p>
+        <p>{account.error}</p>
       );
     }
-    if (!isFetching) {
+    if (!account.isFetching) {
       return (
         <ReposList
           repositories={reposlist.repositories}
@@ -29,7 +25,6 @@ class ReposListContainer extends Component {
         />
       );
     }
-
 
     return <p>Fetching...</p>;
   }
