@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Repositories from '../components/Repositories';
@@ -9,6 +9,19 @@ const mapStateToProps = store => ({
 });
 
 class RepositoriesContainer extends Component {
+  static propTypes = {
+    repositories: PropTypes.shape({
+      year: PropTypes.number.isRequired,
+      filteredRepositories: PropTypes.array.isRequired,
+    }).isRequired,
+    account: PropTypes.shape({
+      error: PropTypes.string.isRequired,
+      isFetching: PropTypes.bool.isRequired,
+      name: PropTypes.string.isRequired,
+      repositories: PropTypes.arrayOf(PropTypes.object).isRequired,
+    }).isRequired,
+  };
+
   renderTemplate() {
     const { repositories, account } = this.props;
 
@@ -21,7 +34,6 @@ class RepositoriesContainer extends Component {
       return (
         <Repositories
           repositories={repositories.filteredRepositories}
-          year={repositories.year}
         />
       );
     }

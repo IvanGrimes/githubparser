@@ -2,9 +2,14 @@ import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 
 export default class Years extends Component {
+  static propTypes = {
+    years: PropTypes.arrayOf(PropTypes.number).isRequired,
+    handleClick: PropTypes.func.isRequired,
+  };
+
   renderTemplate() {
     const { years, handleClick } = this.props;
-    const items = years.map((year, index) => (
+    const buttons = years.map((year, index) => (
       <button
         type="button"
         key={+(new Date().getTime() / (index + 1)).toFixed()}
@@ -14,7 +19,7 @@ export default class Years extends Component {
       </button>
     ));
 
-    return items;
+    return buttons;
   }
 
   render() {

@@ -17,6 +17,12 @@ const mapDispatchToProps = dispatch => ({
 });
 
 class YearsContainer extends Component {
+  static propTypes = {
+    repositories: PropTypes.arrayOf(PropTypes.object).isRequired,
+    currentYear: PropTypes.number.isRequired,
+    handleClick: PropTypes.func.isRequired,
+  };
+
   getYears() {
     const { repositories } = this.props;
     const years = new Set();

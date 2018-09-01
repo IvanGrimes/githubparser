@@ -1,11 +1,5 @@
 export default function filterRepositories(repositories, year) {
-  const filtered = repositories.filter((repository) => {
-    const repositoryYear = new Date(repository.created_at).getFullYear();
-
-    if (repositoryYear === year) {
-      return repository;
-    }
-  });
-
-  return filtered;
+  return repositories.filter(repository => (
+    new Date(repository.created_at).getFullYear() === year && repository
+  ));
 }

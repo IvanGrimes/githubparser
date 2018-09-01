@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 export default class Repositories extends Component {
+  static propTypes = {
+    repositories: PropTypes.arrayOf(PropTypes.object).isRequired,
+  };
+
   renderItems() {
     const { repositories } = this.props;
 

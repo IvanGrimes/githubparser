@@ -19,6 +19,17 @@ const mapDispatchToProps = dispatch => ({
 });
 
 class AccountContainer extends Component {
+  static propTypes = {
+    account: PropTypes.shape({
+      error: PropTypes.string.isRequired,
+      isFetching: PropTypes.bool.isRequired,
+      name: PropTypes.string.isRequired,
+      repositories: PropTypes.array.isRequired,
+    }).isRequired,
+    fetchRepositories: PropTypes.func.isRequired,
+    onSuccessFetch: PropTypes.func.isRequired,
+  };
+
   state = {
     value: '',
   };
@@ -42,18 +53,18 @@ class AccountContainer extends Component {
     if (value !== account.name) {
       fetchRepositories(value, successCallback);
     }
-
-    this.setState({ value: '' });
   };
 
   render() {
     const { value } = this.state;
+    const { account } = this.props;
 
     return (
       <Account
         value={value}
         handleChange={this.handleChange}
         handleClick={this.handleClick}
+        disabled={!!value && value === account.name}
       />
     );
   }

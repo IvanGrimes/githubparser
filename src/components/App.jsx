@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Fragment } from 'react';
 import AccountContainer from '../containers/AccountContainer';
 import YearsListContainer from '../containers/YearsContainer';
 import ReposListContainer from '../containers/RepositoriesContainer';

@@ -1,7 +1,7 @@
-import React, {Component} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
-export default function Account({ value, handleChange, handleClick }) {
+export default function Account({ value, handleChange, handleClick, disabled }) {
   return (
     <div>
       <input
@@ -13,9 +13,17 @@ export default function Account({ value, handleChange, handleClick }) {
       <button
         type="button"
         onClick={handleClick}
+        disabled={disabled}
       >
         Find
       </button>
     </div>
   );
 }
+
+Account.propTypes = {
+  value: PropTypes.string.isRequired,
+  handleChange: PropTypes.func.isRequired,
+  handleClick: PropTypes.func.isRequired,
+  disabled: PropTypes.bool.isRequired,
+};
