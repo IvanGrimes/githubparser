@@ -20,7 +20,7 @@ class YearsListContainer extends Component {
   };
 
   render() {
-    const { repositories, getRepositoriesByYear } = this.props;
+    const { repositories, getRepositoriesByYear, error } = this.props;
 
     return (
       <div>

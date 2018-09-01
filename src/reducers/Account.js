@@ -20,12 +20,12 @@ export default function Account(state = initialState, action) {
       return {
         ...state,
         repositories: action.payload,
-        error: '',
         isFetching: false,
       };
     case GET_REPOSITORIES_FAIL:
       return {
         ...state,
+        repositories: [],
         error: action.payload,
         isFetching: false,
       };

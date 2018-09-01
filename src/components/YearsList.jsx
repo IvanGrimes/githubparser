@@ -17,8 +17,8 @@ export default class YearsList extends Component {
     getRepositoriesByYear(repositories);
   };
 
-  renderItems() {
-    const { repositories } = this.props; // TODO: Send years to the ReposList state
+  renderTemplate() {
+    const { repositories } = this.props;
     const items = getYears(repositories).map((year, index) => (
       <button
         type="button"
@@ -35,7 +35,7 @@ export default class YearsList extends Component {
   render() {
     return (
       <Fragment>
-        {this.renderItems()}
+        {this.renderTemplate()}
       </Fragment>
     );
   }
