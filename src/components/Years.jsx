@@ -23,7 +23,7 @@ export default class Years extends Component {
           key={id}
           in={year === currentYear}
           classNames="years__button-"
-          timeout={150}
+          timeout={200}
           appear
         >
           <button

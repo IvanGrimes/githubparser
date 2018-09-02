@@ -10,15 +10,19 @@
   font-size: 18px;
   cursor: pointer;
   outline: 0;
-  background-color: orangered;
+  background-color: #424242;
   width: 75px;
   height: 32px;
   border-radius: 3px;
   color: #fff;
-  transition: background-color .15s linear;
+  transition: background-color .2s linear;
+}
+
+.years__button:not(.years__button--enter-done):hover {
+  background-color: #2d2d2d;
 }
 
 .years__button--enter-done {
-  background-color: orange;
-  transition: background-color .15s linear;
+  background-color: #000;
+  transition: background-color .2s linear;
 }

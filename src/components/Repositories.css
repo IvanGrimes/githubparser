@@ -1,0 +1,81 @@
+.repositories {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin: 40px auto 0 auto;
+  border-right: 1px solid #dadada;
+  border-left: 1px solid #dadada;
+  width: 30%;
+}
+
+.repositories__item {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  border-bottom: 1px solid #dadada;
+  color: unset;
+  text-decoration: none;
+  align-content: space-between;
+  padding: 15px;
+  background-color: transparent;
+  transition: background-color .2s linear;
+}
+
+.repositories__item:first-child {
+  border-top: 1px solid #dadada;
+}
+
+.repositories__item:hover {
+  background-color: #f8f8f8;
+}
+
+.repositories__item-title {
+  font-size: 24px;
+  width: 100%;
+  text-decoration: none;
+  margin: 0;
+  color: #424242;
+  transition: color .2s linear;
+}
+
+.repositories__item:hover > .repositories__item-title,
+.repositories__item:hover > .repositories__item-description,
+.repositories__item:hover > .repositories__item-stats > .repositories__stats > .repositories__stats-item,
+.repositories__item:hover > .repositories__item-stats > .repositories__stats > .repositories__stats-item > .repositories__stats-item-icon {
+  color: #000;
+}
+
+.repositories__item-description {
+  width: 100%;
+  margin: 35px 0 0 0;
+  color: #424242;
+}
+
+.repositories__item-stats {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  margin: 35px 0 0 0;
+}
+
+.repositories__stats {
+  display: flex;
+  margin: 0 0 0 -25px;
+}
+
+.repositories__stats-item {
+  display: flex;
+  margin: 0 0 0 25px;
+  align-items: center;
+  font-weight: 700;
+  color: #424242;
+  transition: color .2s linear;
+}
+
+.repositories__stats-item-icon {
+  color: #424242;
+  transition: color .2s linear;
+  width: 1.275em;
+  height: 1.275em;
+  margin: 0 5px 0 0;
+}

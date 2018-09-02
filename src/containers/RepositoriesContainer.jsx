@@ -35,27 +35,16 @@ class RepositoriesContainer extends Component {
     return filteredRepositories;
   }
 
-  renderTemplate() {
+  render() {
     const { account } = this.props;
 
-    if (account.error.length > 0 && !account.isFetching) {
-      return (
-        <p>{account.error}</p>
-      );
-    }
-    if (!account.isFetching) {
-      return (
-        <Repositories
-          repositories={this.filterRepositories()}
-        />
-      );
-    }
-
-    return <p>Fetching...</p>;
-  }
-
-  render() {
-    return this.renderTemplate();
+    return (
+      <Repositories
+        error={account.error}
+        isFetching={account.isFetching}
+        repositories={this.filterRepositories()}
+      />
+    );
   }
 }
 
