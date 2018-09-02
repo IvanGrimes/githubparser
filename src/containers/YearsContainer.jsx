@@ -36,24 +36,22 @@ class YearsContainer extends Component {
   }
 
   handleClick = (ev) => {
-    const { handleClick, currentYear } = this.props;
+    const { handleClick } = this.props;
     const selectedYear = parseInt(ev.target.textContent, 10);
 
     ev.preventDefault();
 
-    if (selectedYear !== currentYear) {
-      handleClick(selectedYear);
-    }
+    handleClick(selectedYear);
   };
 
   render() {
+    const { currentYear } = this.props;
     return (
-      <div>
-        <Years
-          years={this.getYears()}
-          handleClick={this.handleClick}
-        />
-      </div>
+      <Years
+        years={this.getYears()}
+        handleClick={this.handleClick}
+        currentYear={currentYear}
+      />
     );
   }
 }

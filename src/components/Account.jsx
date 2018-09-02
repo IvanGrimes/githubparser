@@ -1,21 +1,29 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import './Account.css';
+import { FaSearch } from 'react-icons/fa';
 
-export default function Account({ value, handleChange, handleClick, disabled }) {
+export default function Account({
+  value, handleChange, handleClick, disabled,
+}) {
   return (
-    <div>
+    <div className="account">
       <input
+        className="account__input"
         type="text"
         onChange={handleChange}
         value={value}
       />
 
       <button
+        className="account__button"
         type="button"
         onClick={handleClick}
         disabled={disabled}
       >
-        Find
+        <FaSearch
+          size={32}
+        />
       </button>
     </div>
   );
