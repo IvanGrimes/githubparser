@@ -36,10 +36,12 @@ class YearsContainer extends Component {
   }
 
   handleClick = (ev) => {
-    const { handleClick } = this.props;
+    const { handleClick, currentYear } = this.props;
     const selectedYear = parseInt(ev.target.textContent, 10);
 
     ev.preventDefault();
+
+    if (selectedYear === currentYear) return;
 
     handleClick(selectedYear);
   };

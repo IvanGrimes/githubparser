@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import './Repositories.css';
-import { FaStar, FaEye, FaCodeBranch, FaExclamationCircle, FaCode, FaBalanceScale } from 'react-icons/fa';
+import { FaStar, FaCodeBranch, FaExclamationCircle, FaCode } from 'react-icons/fa';
 import { IconContext } from "react-icons";
+import {
+  CSSTransition,
+  TransitionGroup,
+  Transition,
+} from 'react-transition-group';
 
 export default class Repositories extends Component {
   static propTypes = {
@@ -17,7 +22,7 @@ export default class Repositories extends Component {
     }
 
     if (!isFetching) {
-      return repositories.map((repository, index) => {
+      const items = repositories.map((repository, index) => {
         const {
           name,
           url,
@@ -29,63 +34,75 @@ export default class Repositories extends Component {
         } = repository;
 
         return (
-          <a
-            className="repositories__item"
+          <CSSTransition
             key={+(new Date().getTime() / (index + 1)).toFixed()}
-            href={url}
-            target="_blank"
+            classNames="fade"
+            exit={false}
+            timeout={500}
           >
-            <h1
-              className="repositories__item-title"
+            <a
+              className="repositories__item"
+              href={url}
+              target="_blank"
             >
-              {name}
-            </h1>
+              <h1
+                className="repositories__item-title"
+              >
+                {name}
+              </h1>
 
-            {
-              description
-              && <p className="repositories__item-description">{description}</p>
-            }
+              {
+                description
+                && <p className="repositories__item-description">{description}</p>
+              }
 
-            <div className="repositories__item-stats">
-              <div className="repositories__stats">
-                <div className="repositories__stats-item">
-                  <IconContext.Provider value={{ className: 'repositories__stats-item-icon' }}>
-                    <FaStar />
-                  </IconContext.Provider>
+              <div className="repositories__item-stats">
+                <div className="repositories__stats">
+                  <div className="repositories__stats-item">
+                    <IconContext.Provider value={{ className: 'repositories__stats-item-icon' }}>
+                      <FaStar />
+                    </IconContext.Provider>
 
-                  {stargazers_count}
+                    {stargazers_count}
+                  </div>
+
+                  <div className="repositories__stats-item">
+                    <IconContext.Provider value={{ className: 'repositories__stats-item-icon' }}>
+                      <FaCodeBranch />
+                    </IconContext.Provider>
+
+                    {forks}
+                  </div>
+
+                  <div className="repositories__stats-item">
+                    <IconContext.Provider value={{ className: 'repositories__stats-item-icon' }}>
+                      <FaExclamationCircle />
+                    </IconContext.Provider>
+
+                    {open_issues}
+                  </div>
                 </div>
 
-                <div className="repositories__stats-item">
-                  <IconContext.Provider value={{ className: 'repositories__stats-item-icon' }}>
-                    <FaCodeBranch />
-                  </IconContext.Provider>
+                <div className="repositories__stats">
+                  <div className="repositories__stats-item">
+                    <IconContext.Provider value={{ className: 'repositories__stats-item-icon' }}>
+                      <FaCode />
+                    </IconContext.Provider>
 
-                  {forks}
-                </div>
-
-                <div className="repositories__stats-item">
-                  <IconContext.Provider value={{ className: 'repositories__stats-item-icon' }}>
-                    <FaExclamationCircle />
-                  </IconContext.Provider>
-
-                  {open_issues}
+                    {language ? language : 'Other'}
+                  </div>
                 </div>
               </div>
-
-              <div className="repositories__stats">
-                <div className="repositories__stats-item">
-                  <IconContext.Provider value={{ className: 'repositories__stats-item-icon' }}>
-                    <FaCode />
-                  </IconContext.Provider>
-
-                  {language ? language : 'Other'}
-                </div>
-              </div>
-            </div>
-          </a>
+            </a>
+          </CSSTransition>
         );
       });
+
+      return (
+        <TransitionGroup className="repositories">
+          {items}
+        </TransitionGroup>
+      );
     }
 
     return <p>Fetching...</p>;
@@ -93,9 +110,7 @@ export default class Repositories extends Component {
 
   render() {
     return (
-      <div className={'repositories'}>
-        {this.renderTemplate()}
-      </div>
+      this.renderTemplate()
     );
   }
 }

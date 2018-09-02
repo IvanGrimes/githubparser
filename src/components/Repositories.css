@@ -3,16 +3,16 @@
   align-items: center;
   flex-direction: column;
   margin: 40px auto 0 auto;
-  border-right: 1px solid #dadada;
-  border-left: 1px solid #dadada;
   width: 30%;
+  position: relative;
 }
 
 .repositories__item {
   display: flex;
   flex-wrap: wrap;
   width: 100%;
-  border-bottom: 1px solid #dadada;
+  border: 1px solid #dadada;
+  border-top: 0;
   color: unset;
   text-decoration: none;
   align-content: space-between;
@@ -78,4 +78,13 @@
   width: 1.275em;
   height: 1.275em;
   margin: 0 5px 0 0;
+}
+
+.fade-enter {
+  opacity: .01;
+}
+
+.fade-enter-active {
+  opacity: 1;
+  transition: opacity .5s linear;
 }

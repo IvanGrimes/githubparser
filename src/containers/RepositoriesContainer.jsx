@@ -31,6 +31,7 @@ class RepositoriesContainer extends Component {
         return new Date(repository.created_at).getFullYear() === repositories.year;
       });
     }
+    console.log(filteredRepositories);
 
     return filteredRepositories;
   }

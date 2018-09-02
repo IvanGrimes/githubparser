@@ -2,7 +2,7 @@ import { SET_YEAR, FILTER_BY_YEAR } from '../actions/repositoriesActions';
 
 const initialState = {
   year: 2018,
-  filterByYear: false,
+  filterByYear: true,
 };
 
 export default function repositoriesReducers(state = initialState, action) {
