@@ -12,7 +12,8 @@ export default class Years extends Component {
 
   renderTemplate() {
     const { years, handleClick, currentYear } = this.props;
-    const buttons = years.map((year, index) => {
+
+    return years.map((year, index) => {
       const id = +(new Date().getTime() / (index + 1)).toFixed();
       return (
         <CSSTransition
@@ -32,8 +33,6 @@ export default class Years extends Component {
         </CSSTransition>
       );
     });
-
-    return buttons;
   }
 
   render() {

@@ -17,6 +17,8 @@ import Preloader from './Preloader';
 export default class Repositories extends Component {
   static propTypes = {
     repositories: PropTypes.arrayOf(PropTypes.object).isRequired,
+    error: PropTypes.string.isRequired,
+    isFetching: PropTypes.bool.isRequired,
   };
 
   renderTemplate() {
@@ -94,7 +96,7 @@ export default class Repositories extends Component {
                       <FaCode />
                     </IconContext.Provider>
 
-                    {language ? language : 'Other'}
+                    {language || 'Other'}
                   </div>
                 </div>
               </div>
