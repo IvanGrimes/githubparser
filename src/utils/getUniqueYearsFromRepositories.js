@@ -1,11 +1,11 @@
 export default function getUniqueYearsFromRepositories(repositories) {
-  let years = new Set();
+  let years = [];
 
-  repositories.forEach((repository) => {
-    years.add(new Date(repository.created_at).getFullYear());
-  });
+  repositories.forEach(repository => years.push(new Date(repository.created_at).getFullYear()));
 
-  years = Array.from(years).sort((a, b) => a > b);
+  years = years.filter((year, index, arr) => arr.indexOf(year) === index);
+
+  years.sort((a, b) => a > b);
 
   return years;
 }

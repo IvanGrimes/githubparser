@@ -15,14 +15,12 @@
   height: 32px;
   border-radius: 3px;
   color: #fff;
-  transition: background-color .2s linear;
 }
 
-.years__button:not(.years__button--enter-done):hover {
+.years__button:not(.years__button--active):hover {
   background-color: #2d2d2d;
 }
 
-.years__button--enter-done {
+.years__button--active {
   background-color: #181818;
-  transition: background-color .2s linear;
 }

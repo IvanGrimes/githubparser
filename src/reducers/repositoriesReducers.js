@@ -1,21 +1,56 @@
-import { SET_YEAR, FILTER_BY_YEAR } from '../actions/repositoriesActions';
+import filterRepositoriesByYear from '../utils/filterRepositoriesByYear';
+import getUniqueYearsFromRepositories from '../utils/getUniqueYearsFromRepositories';
+import {
+  FILTER_BY_YEAR,
+  GET_REPOSITORIES_FAIL,
+  GET_REPOSITORIES_SUCCESS,
+  GET_REPOSITORIES_REQUEST,
+  GET_YEARS,
+} from '../actions/repositoriesActions';
 
 const initialState = {
-  year: 2018,
-  filterByYear: true,
+  year: 0,
+  repositories: [],
+  name: '',
+  filteredRepositories: [],
+  isFetching: false,
+  error: '',
+  years: [],
 };
 
 export default function repositoriesReducers(state = initialState, action) {
   switch (action.type) {
-    case SET_YEAR:
+    case GET_REPOSITORIES_REQUEST:
       return {
         ...state,
-        year: action.payload,
+        error: '',
+        name: action.payload,
+        isFetching: true,
+        filteredRepositories: [],
+      };
+    case GET_REPOSITORIES_SUCCESS:
+      return {
+        ...state,
+        repositories: action.payload,
+        isFetching: false,
+      };
+    case GET_REPOSITORIES_FAIL:
+      return {
+        ...state,
+        repositories: [],
+        error: action.payload,
+        isFetching: false,
+      };
+    case GET_YEARS:
+      return {
+        ...state,
+        years: getUniqueYearsFromRepositories(action.payload),
       };
     case FILTER_BY_YEAR:
       return {
         ...state,
-        filterByYear: action.payload,
+        year: action.payload,
+        filteredRepositories: filterRepositoriesByYear(state.repositories, action.payload),
       };
     default:
       return state;

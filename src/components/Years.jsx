@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import './Years.css';
-import { CSSTransition } from 'react-transition-group';
 
 export default class Years extends Component {
   static propTypes = {
@@ -16,21 +15,14 @@ export default class Years extends Component {
     return years.map((year, index) => {
       const id = +(new Date().getTime() / (index + 1)).toFixed();
       return (
-        <CSSTransition
+        <button
           key={id}
-          in={year === currentYear}
-          classNames="years__button-"
-          timeout={200}
-          appear
+          className={`years__button ${year === currentYear ? 'years__button--active' : ''}`}
+          type="button"
+          onClick={handleClick}
         >
-          <button
-            className="years__button"
-            type="button"
-            onClick={handleClick}
-          >
-            {year}
-          </button>
-        </CSSTransition>
+          {year}
+        </button>
       );
     });
   }

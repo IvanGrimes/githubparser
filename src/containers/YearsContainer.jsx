@@ -2,16 +2,17 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Years from '../components/Years';
-import { setYear } from '../actions/repositoriesActions';
+import { filterByYear } from '../actions/repositoriesActions';
 
 const mapStateToProps = store => ({
-  repositories: store.account.repositories,
+  repositories: store.repositories.repositories,
+  isFetching: store.repositories.isFetching,
   currentYear: store.repositories.year,
 });
 
 const mapDispatchToProps = dispatch => ({
   handleClick: (year) => {
-    dispatch(setYear(year));
+    dispatch(filterByYear(year));
   },
 });
 
@@ -46,8 +47,13 @@ class YearsContainer extends Component {
     handleClick(selectedYear);
   };
 
-  render() {
-    const { currentYear } = this.props;
+  renderYears() {
+    const { isFetching, currentYear } = this.props;
+
+    if (isFetching) {
+      return null;
+    }
+
     return (
       <Years
         years={this.getYears()}
@@ -55,6 +61,10 @@ class YearsContainer extends Component {
         currentYear={currentYear}
       />
     );
+  }
+
+  render() {
+    return this.renderYears();
   }
 }
 

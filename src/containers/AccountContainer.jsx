@@ -2,29 +2,30 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Account from '../components/Account';
-import { getRepositories } from '../actions/accountActions';
-import { filterByYear, setYear } from '../actions/repositoriesActions';
-import getYears from '../utils/getUniqueYearsFromRepositories';
+import { getRepositories, filterByYear } from '../actions/repositoriesActions';
+import getUniqueYearsFromRepositories from '../utils/getUniqueYearsFromRepositories';
 
 const mapStateToProps = store => ({
+  repositories: store.repositories,
   account: store.account,
 });
 
 const mapDispatchToProps = dispatch => ({
   fetchRepositories: (name, callback) => dispatch(getRepositories(name, callback)),
-  onSuccessFetch: (year, apply) => {
-    dispatch(setYear(year));
-    dispatch(filterByYear(apply));
+  onSuccessFetch: (year) => {
+    dispatch(filterByYear(year));
   },
 });
 
 class AccountContainer extends Component {
   static propTypes = {
-    account: PropTypes.shape({
+    repositories: PropTypes.shape({
       error: PropTypes.string.isRequired,
       isFetching: PropTypes.bool.isRequired,
-      name: PropTypes.string.isRequired,
       repositories: PropTypes.array.isRequired,
+    }).isRequired,
+    account: PropTypes.shape({
+      name: PropTypes.string.isRequired,
     }).isRequired,
     fetchRepositories: PropTypes.func.isRequired,
     onSuccessFetch: PropTypes.func.isRequired,
@@ -47,24 +48,23 @@ class AccountContainer extends Component {
     ev.preventDefault();
 
     const successCallback = (repositories) => {
-      onSuccessFetch(Math.max.apply(null, getYears(repositories)), true);
+      onSuccessFetch(
+        Math.max.apply(null, getUniqueYearsFromRepositories(repositories)));
     };
 
-    if (value !== account.name) {
-      fetchRepositories(value, successCallback);
-    }
+    fetchRepositories(value, successCallback);
   };
 
   render() {
     const { value } = this.state;
-    const { account } = this.props;
+    const { repositories } = this.props;
 
     return (
       <Account
         value={value}
         handleChange={this.handleChange}
         handleClick={this.handleClick}
-        disabled={!!value && value === account.name}
+        disabled={!!value && value === repositories.name}
       />
     );
   }

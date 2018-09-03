@@ -21,6 +21,23 @@ export default class Repositories extends Component {
     isFetching: PropTypes.bool.isRequired,
   };
 
+  isArraysEqual(a, b) {
+    if (a === b) return false;
+    if (a == null || b == null) return false;
+    if (a.length !== b.length) return true;
+
+    for (var i = 0; i < a.length; ++i) {
+      if (a[i] !== b[i]) return true;
+    }
+    return false;
+  }
+
+  // shouldComponentUpdate(nextProps) {
+  //   const { repositories } = this.props;
+  //
+  //   return this.isArraysEqual(repositories, nextProps.repositories);
+  // }
+
   renderTemplate() {
     const { repositories, error, isFetching } = this.props;
 
@@ -43,8 +60,8 @@ export default class Repositories extends Component {
         return (
           <CSSTransition
             key={+(new Date().getTime() / (index + 1)).toFixed()}
-            classNames="fade"
-            exit={false}
+            classNames="repositories__item-"
+            // exit={false}
             timeout={500}
           >
             <a
