@@ -42,7 +42,7 @@
 .repositories__item:hover > .repositories__item-description,
 .repositories__item:hover > .repositories__item-stats > .repositories__stats > .repositories__stats-item,
 .repositories__item:hover > .repositories__item-stats > .repositories__stats > .repositories__stats-item > .repositories__stats-item-icon {
-  color: #000;
+  color: #181818;
 }
 
 .repositories__item-description {

@@ -1,0 +1,50 @@
+.preloader{
+  box-sizing: border-box;
+  position: absolute;
+  background-color: #181818;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100px;
+  height: 100px;
+  margin: auto;
+  font-size: 0;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.preloader::before {
+  content: '';
+  box-sizing: border-box;
+  position: absolute;
+  background-color: #181818;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: 50px solid transparent;
+  border-top-color: #555555;
+
+  animation: .75s spin infinite linear;
+
+  opacity: 1;
+}
+
+.preloader::before:nth-of-type(1) {
+  opacity: 0.25;
+  border-left-color: #555555;
+}
+.preloader::before:nth-of-type(2) {
+  animation-direction: reverse;
+  animation-duration: 2.5s;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

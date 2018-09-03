@@ -1,13 +1,18 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import './Repositories.css';
-import { FaStar, FaCodeBranch, FaExclamationCircle, FaCode } from 'react-icons/fa';
-import { IconContext } from "react-icons";
+import { IconContext } from 'react-icons';
+import {
+  FaStar,
+  FaCodeBranch,
+  FaExclamationCircle,
+  FaCode,
+} from 'react-icons/fa';
 import {
   CSSTransition,
   TransitionGroup,
-  Transition,
 } from 'react-transition-group';
+import Preloader from './Preloader';
 
 export default class Repositories extends Component {
   static propTypes = {
@@ -105,7 +110,7 @@ export default class Repositories extends Component {
       );
     }
 
-    return <p>Fetching...</p>;
+    return <Preloader />;
   }
 
   render() {

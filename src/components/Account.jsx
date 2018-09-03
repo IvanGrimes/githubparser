@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './Account.css';
+import { IconContext } from 'react-icons';
 import { FaSearch } from 'react-icons/fa';
 
 export default function Account({
@@ -21,9 +22,9 @@ export default function Account({
         onClick={handleClick}
         disabled={disabled}
       >
-        <FaSearch
-          size={32}
-        />
+        <IconContext.Provider value={{ className: 'account__button-icon' }}>
+          <FaSearch />
+        </IconContext.Provider>
       </button>
     </div>
   );

@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import './Years.css';
-import {
-  CSSTransition,
-  TransitionGroup,
-  Transition,
-} from 'react-transition-group';
+import { CSSTransition } from 'react-transition-group';
 
 export default class Years extends Component {
   static propTypes = {

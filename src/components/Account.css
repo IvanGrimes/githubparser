@@ -2,7 +2,7 @@
   display: flex;
   position: relative;
   width: 30%;
-  margin: 0 auto;
+  margin: 20px auto 0 auto;
 }
 
 .account__input {
@@ -11,7 +11,7 @@
   height: 35px;
   font-size: 30px;
   border: 0;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid #181818;
   outline: 0;
 }
 
@@ -28,3 +28,13 @@
   height: 32px;
 }
 
+.account__button:disabled > .account__button-icon {
+  color: #555555;
+}
+
+.account__button-icon {
+  color: #181818;
+  width: 2em;
+  height: 2em;
+  transition: color .2s linear;
+}

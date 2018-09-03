@@ -2,8 +2,8 @@ export const GET_REPOSITORIES_REQUEST = 'GET_REPOSITORIES_REQUEST';
 export const GET_REPOSITORIES_SUCCESS = 'GET_REPOSITORIES_SUCCESS';
 export const GET_REPOSITORIES_FAIL = 'GET_REPOSITORIES_FAIL';
 
-export function getRepositories(name, callback) {
-  return (dispatch) => {
+export const getRepositories = (name, callback) => (
+  (dispatch) => {
     dispatch({
       type: GET_REPOSITORIES_REQUEST,
       payload: name,
@@ -20,7 +20,7 @@ export function getRepositories(name, callback) {
         } else if (!repositories.length) {
           dispatch({
             type: GET_REPOSITORIES_FAIL,
-            payload: `User doesn't have repositories`,
+            payload: 'User doesn\'t have repositories',
           });
         } else {
           dispatch({
@@ -30,5 +30,5 @@ export function getRepositories(name, callback) {
           callback(repositories);
         }
       });
-  };
-}
+  }
+);
