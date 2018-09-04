@@ -56,7 +56,7 @@ export default class Repositories extends Component {
           timeout={250}
           appear
         >
-          <p>{error}</p>
+          <p className="repositories__error">{error}</p>
         </CSSTransition>
       );
     } else {

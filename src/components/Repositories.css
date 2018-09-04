@@ -7,6 +7,16 @@
   position: relative;
 }
 
+.repositories__error {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.repositories__error::after {
+  content: ':(';
+  margin: 0 0 0 7px;
+}
+
 .repositories__item {
   display: flex;
   flex-wrap: wrap;

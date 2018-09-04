@@ -55,7 +55,7 @@ class AccountContainer extends Component {
         value={value}
         handleChange={this.handleChange}
         handleClick={this.handleClick}
-        disabled={!!value && value === user}
+        disabled={!value.length || value === user}
       />
     );
   }
