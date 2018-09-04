@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Account from '../components/Account';
-import { getRepositories, filterByYear } from '../actions/repositoriesActions';
+import { getRepositories, filterByYear } from '../actions/repositories';
 import getUniqueYearsFromRepositories from '../utils/getUniqueYearsFromRepositories';
 
 const mapStateToProps = store => ({

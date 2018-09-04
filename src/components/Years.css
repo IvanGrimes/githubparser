@@ -25,24 +25,24 @@
   background-color: #181818;
 }
 
-.years--fade-enter {
+.years__fade--enter {
   opacity: 0;
 }
 
-.years--fade-enter-active {
+.years__fade--enter-active {
   opacity: 1;
   transition: opacity .25s linear;
 }
 
-.years--fade-enter-done {
+.years__fade--enter-done {
   opacity: 1;
 }
 
-.years--fade-exit-active {
+.years__fade--exit-active {
   opacity: 0;
   transition: opacity .25s linear;
 }
 
-.years--fade-exit-done {
+.years__fade--exit-done {
   opacity: 0;
 }

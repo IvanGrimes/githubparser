@@ -6,7 +6,7 @@ import {
   GET_REPOSITORIES_SUCCESS,
   GET_REPOSITORIES_REQUEST,
   GET_YEARS,
-} from '../actions/repositoriesActions';
+} from '../actions/repositories';
 
 const initialState = {
   year: 0,
@@ -18,7 +18,7 @@ const initialState = {
   years: [],
 };
 
-export default function repositoriesReducers(state = initialState, action) {
+export default function repositories(state = initialState, action) {
   switch (action.type) {
     case GET_REPOSITORIES_REQUEST:
       return {

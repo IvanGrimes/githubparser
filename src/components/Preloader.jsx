@@ -1,6 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './Preloader.css';
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import { CSSTransition } from 'react-transition-group';
 
 export default function Preloader({ isFetching }) {
   return (
@@ -13,3 +14,7 @@ export default function Preloader({ isFetching }) {
     </CSSTransition>
   );
 }
+
+Preloader.propTypes = {
+  isFetching: PropTypes.bool.isRequired,
+};

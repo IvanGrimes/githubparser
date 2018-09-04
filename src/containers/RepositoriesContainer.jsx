@@ -1,17 +1,15 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Repositories from '../components/Repositories';
 
-const RepositoriesContainer = ({ filteredRepositories, isFetching, error }) => {
-  return (
-    <Repositories
-      repositories={filteredRepositories}
-      isFetching={isFetching}
-      error={error}
-    />
-  );
-}
+const RepositoriesContainer = ({ filteredRepositories, isFetching, error }) => (
+  <Repositories
+    repositories={filteredRepositories}
+    isFetching={isFetching}
+    error={error}
+  />
+);
 
 RepositoriesContainer.propTypes = {
   filteredRepositories: PropTypes.arrayOf(PropTypes.object).isRequired,

@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import {
+  CSSTransition,
+  TransitionGroup,
+} from 'react-transition-group';
 import Years from '../components/Years';
-import { filterByYear } from '../actions/repositoriesActions';
-import { CSSTransition, Transition, TransitionGroup } from 'react-transition-group';
+import { filterByYear } from '../actions/repositories';
 
 const mapStateToProps = store => ({
   repositories: store.repositories.repositories,
@@ -22,6 +25,7 @@ class YearsContainer extends Component {
     repositories: PropTypes.arrayOf(PropTypes.object).isRequired,
     currentYear: PropTypes.number.isRequired,
     handleClick: PropTypes.func.isRequired,
+    isFetching: PropTypes.bool.isRequired,
   };
 
   getYears() {
@@ -57,8 +61,8 @@ class YearsContainer extends Component {
 
     return (
       <CSSTransition
-        classNames="years--fade"
-        timeout={5000}
+        classNames="years__fade-"
+        timeout={250}
         in={!isFetching}
       >
         <Years
@@ -72,7 +76,7 @@ class YearsContainer extends Component {
 
   render() {
     return (
-      <TransitionGroup>
+      <TransitionGroup className="years">
         {this.renderYears()}
       </TransitionGroup>
     );
