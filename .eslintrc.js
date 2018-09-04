@@ -6,6 +6,7 @@ module.exports = {
   },
   "rules": {
     "no-param-reassign": 0,
+    "camelcase": 0,
   },
   "extends": "airbnb"
 };

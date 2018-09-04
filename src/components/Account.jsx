@@ -34,5 +34,4 @@ Account.propTypes = {
   value: PropTypes.string.isRequired,
   handleChange: PropTypes.func.isRequired,
   handleClick: PropTypes.func.isRequired,
-  disabled: PropTypes.bool.isRequired,
 };

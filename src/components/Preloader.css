@@ -12,6 +12,16 @@
   font-size: 0;
   border-radius: 50%;
   overflow: hidden;
+  opacity: 0;
+  transition: opacity .25s linear .25s;
+}
+
+.preloader--enter-active, .preloader--enter-done {
+  opacity: .75;
+}
+
+.preloader--exit-active, .preloader--exit-done {
+  opacity: 0;
 }
 
 .preloader::before {

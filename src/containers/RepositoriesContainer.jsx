@@ -3,34 +3,26 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Repositories from '../components/Repositories';
 
-const mapStateToProps = store => ({
-  repositories: store.repositories,
-});
-
-class RepositoriesContainer extends Component {
-  static propTypes = {
-    repositories: PropTypes.shape({
-      year: PropTypes.number.isRequired,
-      filterByYear: PropTypes.bool.isRequired,
-      error: PropTypes.string.isRequired,
-      isFetching: PropTypes.bool.isRequired,
-      repositories: PropTypes.arrayOf(PropTypes.object).isRequired,
-    }).isRequired,
-  };
-
-  render() {
-    console.log('render')
-
-    const { repositories } = this.props;
-
-    return (
-      <Repositories
-        error={repositories.error}
-        isFetching={repositories.isFetching}
-        repositories={repositories.filteredRepositories}
-      />
-    );
-  }
+const RepositoriesContainer = ({ filteredRepositories, isFetching, error }) => {
+  return (
+    <Repositories
+      repositories={filteredRepositories}
+      isFetching={isFetching}
+      error={error}
+    />
+  );
 }
+
+RepositoriesContainer.propTypes = {
+  filteredRepositories: PropTypes.arrayOf(PropTypes.object).isRequired,
+  isFetching: PropTypes.bool.isRequired,
+  error: PropTypes.string.isRequired,
+};
+
+const mapStateToProps = store => ({
+  filteredRepositories: store.repositories.filteredRepositories,
+  isFetching: store.repositories.isFetching,
+  error: store.repositories.error,
+});
 
 export default connect(mapStateToProps)(RepositoriesContainer);

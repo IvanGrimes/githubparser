@@ -4,14 +4,14 @@ export const GET_REPOSITORIES_SUCCESS = 'GET_REPOSITORIES_SUCCESS';
 export const GET_REPOSITORIES_FAIL = 'GET_REPOSITORIES_FAIL';
 export const GET_YEARS = 'GET_YEARS';
 
-export const getRepositories = (name, callback) => (
+export const getRepositories = (user, callback) => (
   (dispatch) => {
     dispatch({
       type: GET_REPOSITORIES_REQUEST,
-      payload: name,
+      payload: user,
     });
 
-    fetch(`https://api.github.com/users/${name}/repos`)
+    fetch(`https://api.github.com/users/${user}/repos`)
       .then(response => response.json())
       .then((repositories) => {
         if (repositories.message) {

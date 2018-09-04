@@ -11,7 +11,7 @@ import {
 const initialState = {
   year: 0,
   repositories: [],
-  name: '',
+  user: '',
   filteredRepositories: [],
   isFetching: false,
   error: '',
@@ -24,7 +24,7 @@ export default function repositoriesReducers(state = initialState, action) {
       return {
         ...state,
         error: '',
-        name: action.payload,
+        user: action.payload,
         isFetching: true,
         filteredRepositories: [],
       };

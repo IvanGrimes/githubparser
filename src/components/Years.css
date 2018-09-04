@@ -24,3 +24,25 @@
 .years__button--active {
   background-color: #181818;
 }
+
+.years--fade-enter {
+  opacity: 0;
+}
+
+.years--fade-enter-active {
+  opacity: 1;
+  transition: opacity .25s linear;
+}
+
+.years--fade-enter-done {
+  opacity: 1;
+}
+
+.years--fade-exit-active {
+  opacity: 0;
+  transition: opacity .25s linear;
+}
+
+.years--fade-exit-done {
+  opacity: 0;
+}

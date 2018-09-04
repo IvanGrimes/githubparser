@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Years from '../components/Years';
 import { filterByYear } from '../actions/repositoriesActions';
+import { CSSTransition, Transition, TransitionGroup } from 'react-transition-group';
 
 const mapStateToProps = store => ({
   repositories: store.repositories.repositories,
@@ -55,16 +56,26 @@ class YearsContainer extends Component {
     }
 
     return (
-      <Years
-        years={this.getYears()}
-        handleClick={this.handleClick}
-        currentYear={currentYear}
-      />
+      <CSSTransition
+        classNames="years--fade"
+        timeout={5000}
+        in={!isFetching}
+      >
+        <Years
+          years={this.getYears()}
+          handleClick={this.handleClick}
+          currentYear={currentYear}
+        />
+      </CSSTransition>
     );
   }
 
   render() {
-    return this.renderYears();
+    return (
+      <TransitionGroup>
+        {this.renderYears()}
+      </TransitionGroup>
+    );
   }
 }
 

@@ -17,7 +17,7 @@
   text-decoration: none;
   align-content: space-between;
   padding: 15px;
-  background-color: transparent;
+  background-color: #fff;
   transition: background-color .2s linear;
 }
 
@@ -80,17 +80,20 @@
   margin: 0 5px 0 0;
 }
 
-.repositories__item--enter-active {
+.repositories__item--enter {
   opacity: 0;
   position: absolute;
 }
 
 .repositories__item--enter-done {
   opacity: 1;
-  transition: opacity .5s linear;
+  transition: opacity .25s linear;
 }
 
 .repositories__item--exit-active {
-  opacity: 0.1;
-  transition: opacity .5s linear;
+  transition: opacity .25s linear;
+}
+
+.repositories__item--exit-active {
+  opacity: 0;
 }

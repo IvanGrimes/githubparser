@@ -6,8 +6,7 @@ import { getRepositories, filterByYear } from '../actions/repositoriesActions';
 import getUniqueYearsFromRepositories from '../utils/getUniqueYearsFromRepositories';
 
 const mapStateToProps = store => ({
-  repositories: store.repositories,
-  account: store.account,
+  user: store.repositories.user,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -19,14 +18,7 @@ const mapDispatchToProps = dispatch => ({
 
 class AccountContainer extends Component {
   static propTypes = {
-    repositories: PropTypes.shape({
-      error: PropTypes.string.isRequired,
-      isFetching: PropTypes.bool.isRequired,
-      repositories: PropTypes.array.isRequired,
-    }).isRequired,
-    account: PropTypes.shape({
-      name: PropTypes.string.isRequired,
-    }).isRequired,
+    user: PropTypes.string.isRequired,
     fetchRepositories: PropTypes.func.isRequired,
     onSuccessFetch: PropTypes.func.isRequired,
   };
@@ -42,14 +34,13 @@ class AccountContainer extends Component {
   };
 
   handleClick = (ev) => {
-    const { account, fetchRepositories, onSuccessFetch } = this.props;
+    const { fetchRepositories, onSuccessFetch } = this.props;
     const { value } = this.state;
 
     ev.preventDefault();
 
     const successCallback = (repositories) => {
-      onSuccessFetch(
-        Math.max.apply(null, getUniqueYearsFromRepositories(repositories)));
+      onSuccessFetch(Math.max.apply(null, getUniqueYearsFromRepositories(repositories)));
     };
 
     fetchRepositories(value, successCallback);
@@ -57,14 +48,14 @@ class AccountContainer extends Component {
 
   render() {
     const { value } = this.state;
-    const { repositories } = this.props;
+    const { user } = this.props;
 
     return (
       <Account
         value={value}
         handleChange={this.handleChange}
         handleClick={this.handleClick}
-        disabled={!!value && value === repositories.name}
+        disabled={!!value && value === user}
       />
     );
   }
